@@ -1,6 +1,8 @@
 import 'package:fitness_app/objects/user.dart';
 import 'package:fitness_app/screens/settings.dart';
 import 'package:fitness_app/screens/splash.dart';
+import 'package:fitness_app/screens/stopwatchlist.dart';
+import 'package:fitness_app/screens/stopwatchtimer.dart';
 
 import 'imports.dart';
 
@@ -21,10 +23,10 @@ class _AppScaffoldState extends State<AppScaffold> {
   Widget build(BuildContext context) {
     switch (index) {
       case 0:
-        page = const Placeholder();
+        page = const StopWatchTimerPage();
         break;
       case 1:
-        page = const Placeholder();
+        page = const StopWatchList();
         break;
       case 2:
         page = const SettingsPage();

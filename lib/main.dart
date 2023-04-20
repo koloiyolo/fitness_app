@@ -4,10 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 late Box user;
+late Box stopwatches;
 
 Future<void> main() async {
   await Hive.initFlutter();
   await Hive.openBox('user');
+  stopwatches = await Hive.openBox('stopwatches');
   user = Hive.box('user');
 
   runApp(const MyApp());
@@ -22,14 +24,14 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-            colorSchemeSeed: Colors.green[400],
+            colorSchemeSeed: Colors.blue,
             useMaterial3: true,
             brightness: Brightness.light),
         darkTheme: ThemeData(
             colorSchemeSeed: Colors.blue,
             useMaterial3: true,
             brightness: Brightness.dark),
-        themeMode: ThemeMode.dark,
+        themeMode: ThemeMode.system,
         home: (user.isEmpty) ? const SplashScreen() : AppScaffold());
   }
 }
