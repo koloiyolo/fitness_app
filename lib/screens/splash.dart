@@ -97,10 +97,8 @@ class _SplashScreenState extends State<SplashScreen> {
                             (gender == Gender.male) ? 'male' : 'female',
                             DateTime.now());
 
-                        Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                                builder: ((_) => AppScaffold())));
+                        Navigator.pushReplacement(context,
+                            MaterialPageRoute(builder: ((_) => AppScaffold())));
                       } else {
                         showDialog(
                             context: context,
@@ -120,6 +118,10 @@ class _SplashScreenState extends State<SplashScreen> {
                                 )));
                       }
                     },
+                    visualDensity: VisualDensity.comfortable,
+                    padding: const EdgeInsets.all(8),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16)),
                     child: const BuildText(
                       text: 'Create user',
                       size: 1.5,

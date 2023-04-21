@@ -9,7 +9,7 @@ late Box stopwatches;
 Future<void> main() async {
   await Hive.initFlutter();
   await Hive.openBox('user');
-  stopwatches = await Hive.openBox('stopwatches');
+  stopwatches = await Hive.openBox('running');
   user = Hive.box('user');
 
   runApp(const MyApp());
@@ -20,7 +20,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-  
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(

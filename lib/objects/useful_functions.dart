@@ -1,3 +1,5 @@
+import 'package:fitness_app/imports.dart';
+
 String convMinSecHour(int toConvert) {
   return (toConvert < 10) ? '0$toConvert' : '$toConvert';
 }
@@ -26,4 +28,11 @@ String dateToString(DateTime datetime) {
                                           : (datetime.month == 11)
                                               ? '${datetime.day} November ${datetime.year}'
                                               : '${datetime.day} December ${datetime.year}';
+}
+double sumOfDistance(List<Checkpoint> checkpoints){
+  double sum = 0;
+  for(Checkpoint checkpoint in checkpoints){
+    sum += checkpoint.distance;
+  }
+  return sum;
 }
