@@ -97,7 +97,7 @@ class _StopWatchTimerPageState extends State<StopWatchTimerPage> {
               const EdgeInsets.only(left: 30, right: 30, bottom: 16, top: 16),
           child: MaterialButton(
             visualDensity: VisualDensity.comfortable,
-            padding: const EdgeInsets.all(8),
+            padding: const EdgeInsets.all(21),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(16),
             ),
@@ -119,7 +119,7 @@ class _StopWatchTimerPageState extends State<StopWatchTimerPage> {
             children: [
               MaterialButton(
                 visualDensity: VisualDensity.comfortable,
-                padding: const EdgeInsets.all(8),
+                padding: const EdgeInsets.all(21),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(16),
                 ),
@@ -135,7 +135,7 @@ class _StopWatchTimerPageState extends State<StopWatchTimerPage> {
               ),
               MaterialButton(
                 visualDensity: VisualDensity.comfortable,
-                padding: const EdgeInsets.all(8),
+                padding: const EdgeInsets.all(21),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(16),
                 ),
@@ -160,7 +160,7 @@ class _StopWatchTimerPageState extends State<StopWatchTimerPage> {
     if (!isStarted) {
       isStarted = true;
       stopwatch = Timer.periodic(const Duration(milliseconds: 100), (timer) {
-        if ((seconds % 15 == 0) && deciseconds == 0 && positionGranted) {
+        if ((seconds % 60 == 0) && deciseconds == 0 && positionGranted) {
           newCheckpoint();
         }
 
