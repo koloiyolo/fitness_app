@@ -1,4 +1,4 @@
-# fitness_app
+# fitness_app(WIP)
 
 Simple app to track your cardio routes and fitness progress
 
