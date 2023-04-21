@@ -2,9 +2,8 @@
 
 Simple app to track your cardio routes and fitness progress
 
+<img src="https://user-images.githubusercontent.com/23361087/233647136-560fd1b6-47b7-4ce0-8ed7-11b95dd59f1e.png" width=25% height=25%><img src="https://user-images.githubusercontent.com/23361087/233647207-ab80ab67-367a-4db1-a1b9-316a30414669.png" width=25% height=25%>
 
-![image](https://user-images.githubusercontent.com/23361087/233647136-560fd1b6-47b7-4ce0-8ed7-11b95dd59f1e.png)
-![image](https://user-images.githubusercontent.com/23361087/233647207-ab80ab67-367a-4db1-a1b9-316a30414669.png)
 
 
 
