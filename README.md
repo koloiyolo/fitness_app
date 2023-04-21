@@ -1,6 +1,12 @@
 # fitness_app
 
-A new Flutter project.
+Simple app to track your cardio routes and fitness progress
+
+
+![image](https://user-images.githubusercontent.com/23361087/233647136-560fd1b6-47b7-4ce0-8ed7-11b95dd59f1e.png)
+![image](https://user-images.githubusercontent.com/23361087/233647207-ab80ab67-367a-4db1-a1b9-316a30414669.png)
+
+
 
 ## Getting Started
 
