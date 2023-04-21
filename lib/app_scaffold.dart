@@ -20,10 +20,10 @@ class _AppScaffoldState extends State<AppScaffold> {
   Widget build(BuildContext context) {
     switch (index) {
       case 0:
-        page = const StopWatchTimerPage();
+        page = StopWatchTimerPage(list: runningList, box: 'runningList');
         break;
       case 1:
-        page = const StopWatchList();
+        page = StopWatchList(list: runningList);
         break;
       case 2:
         page = const SettingsPage();

@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:fitness_app/imports.dart';
 
 class SettingsPage extends StatelessWidget {

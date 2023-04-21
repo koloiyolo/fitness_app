@@ -11,11 +11,10 @@ Future<void> main() async {
   await Hive.openBox('user');
   data = await Hive.openBox('data');
   user = Hive.box('user');
- 
   if(data.isEmpty){
     runningList = [];
   }else{
-    runningList = stopWatchesFromList(data.get('running'));
+    runningList = stopWatchesFromList(data.get('runningList'));
   }
 
   runApp(const MyApp());

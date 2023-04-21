@@ -1,31 +1,15 @@
 import 'package:fitness_app/imports.dart';
 
-// time vars
-int hours = 0;
-int minutes = 0;
-int seconds = 0;
-int deciseconds = 0;
-
-// time to str vars
-String hoursStr = '00';
-String minutesStr = '00';
-String secondsStr = '00';
-String decisecondsStr = '0';
-
-late Timer stopwatch;
-bool isStarted = false;
-
-late bool positionGranted = true;
-late Position lastPosition;
-late Position currentPosition;
-List<Checkpoint> locationCheckpoints = [];
 const LocationSettings locationSettings = LocationSettings(
   accuracy: LocationAccuracy.high,
-  distanceFilter: 50,
+  distanceFilter: 20,
 );
+late Position currentPosition;
 
 class StopWatchTimerPage extends StatefulWidget {
-  const StopWatchTimerPage({super.key});
+  final String box;
+  final List<StopWatch> list;
+  const StopWatchTimerPage({required this.box, required this.list, super.key});
 
   @override
   State<StopWatchTimerPage> createState() => _StopWatchTimerPageState();
@@ -37,6 +21,25 @@ class _StopWatchTimerPageState extends State<StopWatchTimerPage> {
     super.initState();
     getLocationPermission();
   }
+
+// time vars
+  int hours = 0;
+  int minutes = 0;
+  int seconds = 0;
+  int deciseconds = 0;
+
+// time to str vars
+  String hoursStr = '00';
+  String minutesStr = '00';
+  String secondsStr = '00';
+  String decisecondsStr = '0';
+
+  late Timer stopwatch;
+  bool isStarted = false;
+
+  bool positionGranted = true;
+  late Position lastPosition;
+  List<Checkpoint> locationCheckpoints = [];
 
   final StreamSubscription<Position> positionStream =
       Geolocator.getPositionStream(locationSettings: locationSettings)
@@ -72,7 +75,8 @@ class _StopWatchTimerPageState extends State<StopWatchTimerPage> {
             itemCount: locationCheckpoints.length,
             itemBuilder: (context, index) => Center(
               child: BuildText(
-                  text: '${locationCheckpoints[index].time}. ${locationCheckpoints[index].distance.round()} m',
+                  text:
+                      '${locationCheckpoints[index].time}. ${locationCheckpoints[index].distance.round()} m',
                   size: 1.5),
             ),
           ),
@@ -81,7 +85,9 @@ class _StopWatchTimerPageState extends State<StopWatchTimerPage> {
           flex: 1,
           child: SizedBox(),
         ),
-        BuildText(text: 'Total: ${sumOfDistance(locationCheckpoints).round()}m', size: 2),
+        BuildText(
+            text: 'Total: ${sumOfDistance(locationCheckpoints).round()}m',
+            size: 2),
         const Expanded(
           flex: 1,
           child: SizedBox(),
@@ -151,36 +157,38 @@ class _StopWatchTimerPageState extends State<StopWatchTimerPage> {
   }
 
   void stopWatchStart() {
-    isStarted = true;
-    stopwatch = Timer.periodic(const Duration(milliseconds: 100), (timer) {
-      if ((seconds % 30 == 0) && deciseconds == 0 && positionGranted) {
-        newCheckpoint();
-      }
+    if (!isStarted) {
+      isStarted = true;
+      stopwatch = Timer.periodic(const Duration(milliseconds: 100), (timer) {
+        if ((seconds % 15 == 0) && deciseconds == 0 && positionGranted) {
+          newCheckpoint();
+        }
 
-      // time vars
-      deciseconds++;
-      if (minutes == 59 && seconds == 59 && deciseconds == 9) {
-        hours++;
-        minutes = 0;
-        seconds = 0;
-        deciseconds = 0;
-      } else if (seconds == 59 && deciseconds == 9) {
-        minutes++;
-        seconds = 0;
-        deciseconds = 0;
-      }
-      if (deciseconds == 10) {
-        seconds++;
-        deciseconds = 0;
-      }
+        // time vars
+        deciseconds++;
+        if (minutes == 59 && seconds == 59 && deciseconds == 9) {
+          hours++;
+          minutes = 0;
+          seconds = 0;
+          deciseconds = 0;
+        } else if (seconds == 59 && deciseconds == 9) {
+          minutes++;
+          seconds = 0;
+          deciseconds = 0;
+        }
+        if (deciseconds == 10) {
+          seconds++;
+          deciseconds = 0;
+        }
 
-      //time to str vars
-      hoursStr = convMinSecHour(hours);
-      minutesStr = convMinSecHour(minutes);
-      secondsStr = convMinSecHour(seconds);
-      decisecondsStr = '$deciseconds';
-      setState(() {});
-    });
+        //time to str vars
+        hoursStr = convMinSecHour(hours);
+        minutesStr = convMinSecHour(minutes);
+        secondsStr = convMinSecHour(seconds);
+        decisecondsStr = '$deciseconds';
+        setState(() {});
+      });
+    }
   }
 
   void stopWatchPause() {
@@ -196,18 +204,17 @@ class _StopWatchTimerPageState extends State<StopWatchTimerPage> {
     if (minutes != 0 || seconds != 0 || deciseconds != 0 || hours != 0) {
       isStarted = false;
       stopwatch.cancel();
-      runningList.add(
+      widget.list.add(
         StopWatch(
-          hours: hours,
-          minutes: minutes,
-          seconds: seconds,
-          deciseconds: deciseconds,
-          date: DateTime.now(),
-          checkpoints: locationCheckpoints
-        ),
+            hours: hours,
+            minutes: minutes,
+            seconds: seconds,
+            deciseconds: deciseconds,
+            date: DateTime.now(),
+            checkpoints: locationCheckpoints),
       );
-      data.delete('running');
-      data.put('running', stopWatchesToList(runningList));
+      data.delete(widget.box);
+      data.put(widget.box, stopWatchesToList(widget.list));
       hours = 0;
       minutes = 0;
       seconds = 0;
@@ -246,19 +253,19 @@ class _StopWatchTimerPageState extends State<StopWatchTimerPage> {
     }
     lastPosition = currentPosition;
   }
-}
 
-Future<void> getLocationPermission() async {
-  var _permissionGranted = await Geolocator.checkPermission();
+  Future<void> getLocationPermission() async {
+    var _permissionGranted = await Geolocator.checkPermission();
 
-  if (_permissionGranted != LocationPermission.always ||
-      _permissionGranted != LocationPermission.whileInUse) {
-    await Geolocator.requestPermission();
+    if (_permissionGranted != LocationPermission.always ||
+        _permissionGranted != LocationPermission.whileInUse) {
+      await Geolocator.requestPermission();
+    }
+
+    if (_permissionGranted != LocationPermission.always ||
+        _permissionGranted != LocationPermission.whileInUse) {
+      positionGranted = false;
+    }
+    positionGranted = true;
   }
-
-  if (_permissionGranted != LocationPermission.always ||
-      _permissionGranted != LocationPermission.whileInUse) {
-    positionGranted = false;
-  }
-  positionGranted = true;
 }
