@@ -36,3 +36,6 @@ double sumOfDistance(List<Checkpoint> checkpoints){
   }
   return sum;
 }
+// String dateTimeToString(DateTime date){
+//   return '${date.year}-${date.month}-${date.day} ${date.hour}:${date.minute}:${date.second}"';
+// }

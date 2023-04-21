@@ -196,7 +196,7 @@ class _StopWatchTimerPageState extends State<StopWatchTimerPage> {
     if (minutes != 0 || seconds != 0 || deciseconds != 0 || hours != 0) {
       isStarted = false;
       stopwatch.cancel();
-      stopWatchList.add(
+      runningList.add(
         StopWatch(
           hours: hours,
           minutes: minutes,
@@ -206,6 +206,8 @@ class _StopWatchTimerPageState extends State<StopWatchTimerPage> {
           checkpoints: locationCheckpoints
         ),
       );
+      data.delete('running');
+      data.put('running', stopWatchesToList(runningList));
       hours = 0;
       minutes = 0;
       seconds = 0;

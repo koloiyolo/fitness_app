@@ -1,16 +1,22 @@
 import 'package:fitness_app/app_scaffold.dart';
+import 'imports.dart';
 import 'package:fitness_app/screens/splash.dart';
-import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 late Box user;
-late Box stopwatches;
+late Box data;
 
 Future<void> main() async {
   await Hive.initFlutter();
   await Hive.openBox('user');
-  stopwatches = await Hive.openBox('running');
+  data = await Hive.openBox('data');
   user = Hive.box('user');
+ 
+  if(data.isEmpty){
+    runningList = [];
+  }else{
+    runningList = stopWatchesFromList(data.get('running'));
+  }
 
   runApp(const MyApp());
 }

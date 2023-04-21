@@ -6,22 +6,22 @@ class StopWatchList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: stopWatchList.length,
+      itemCount: runningList.length,
       itemBuilder: (context, index) => ExpansionTile(
         title: BuildText(
             text:
-                ' ${index + 1}.  ${dateToString(stopWatchList[index].date)}   ${stopWatchList[index].date.hour}:${stopWatchList[index].date.minute}',
+                ' ${index + 1}.  ${dateToString(runningList[index].date)}   ${runningList[index].date.hour}:${runningList[index].date.minute}',
             size: 1.7),
         children: [
           const SizedBox(height: 16),
           BuildText(
-              text: 'Time: ${stopWatchList[index].timeToString()}', size: 1.7),
+              text: 'Time: ${runningList[index].timeToString()}', size: 1.7),
           const SizedBox(height: 16),
           BuildText(
-              text: 'Distance: ${sumOfDistance(stopWatchList[index].checkpoints).round()} m', size: 1.7),
+              text: 'Distance: ${sumOfDistance(runningList[index].checkpoints).round()} m', size: 1.7),
           const SizedBox(height: 16),
           BuildText(
-              text: 'Speed: ${sumOfDistance(stopWatchList[index].checkpoints).round()} m', size: 1.7),
+              text: 'Speed: ${sumOfDistance(runningList[index].checkpoints).round()} m', size: 1.7),
           const SizedBox(height: 16),
         ],
       ),
