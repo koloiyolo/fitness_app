@@ -11,7 +11,7 @@ class SettingsPage extends StatelessWidget {
         user.deleteAll(user.keys);
       }, child: const Text('Delete user data')),
       ElevatedButton(onPressed: (){
-        data.deleteAll(user.keys);
+        data.deleteAll(data.keys);
       }, child: const Text('Delete all data')),
       ],
       

@@ -6,6 +6,8 @@ const LocationSettings locationSettings = LocationSettings(
 );
 late Position currentPosition;
 
+bool positionGranted = false;
+
 class StopWatchTimerPage extends StatefulWidget {
   final String box;
   final List<StopWatch> list;
@@ -36,7 +38,6 @@ class _StopWatchTimerPageState extends State<StopWatchTimerPage> {
   bool isStarted = false;
   
   String positionGrantedString = 'Fetching GPS.';
-  bool positionGranted = false;
   late Position lastPosition;
   List<Checkpoint> locationCheckpoints = [];
 
@@ -68,10 +69,11 @@ class _StopWatchTimerPageState extends State<StopWatchTimerPage> {
     
   }
 
-
   @override
   void initState() {
-    waitForPosition(8);
+    if(!positionGranted){
+      waitForPosition(8);
+    }
     super.initState();
   }
   @override

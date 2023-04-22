@@ -7,22 +7,21 @@ late Box user;
 late Box data;
 
 Future<void> main() async {
-
   //init local DBs
   await Hive.initFlutter();
   await Hive.openBox('user');
   data = await Hive.openBox('data');
   user = Hive.box('user');
-  if(data.isNotEmpty){
-   if(data.get('Cardio') != null){
+  if (data.isNotEmpty) {
+    if (data.get('Cardio') != null) {
       cardioList = stopWatchesFromList(data.get('Cardio'));
-   }
-   if(data.get('Sprint') != null){
+    }
+    if (data.get('Sprint') != null) {
       sprintList = stopWatchesFromList(data.get('Sprint'));
-   }
-   if(data.get('Cycling') != null){
+    }
+    if (data.get('Cycling') != null) {
       cyclingList = stopWatchesFromList(data.get('Cycling'));
-   }
+    }
   }
 
   runApp(const MyApp());
