@@ -30,10 +30,13 @@ class _StopWatchTimerPageState extends State<StopWatchTimerPage> {
   String secondsStr = '00';
   String decisecondsStr = '0';
 
+  
+
   late Timer stopwatch;
   bool isStarted = false;
-
-  bool positionGranted = true;
+  
+  String positionGrantedString = 'Fetching GPS.';
+  bool positionGranted = false;
   late Position lastPosition;
   List<Checkpoint> locationCheckpoints = [];
 
@@ -47,6 +50,30 @@ class _StopWatchTimerPageState extends State<StopWatchTimerPage> {
     }
   });
 
+  void waitForPosition(int  i) {
+    
+      Timer(const Duration(milliseconds: 500), () {
+        setState(() {
+          positionGrantedString = (i==1 || i == 4|| i == 7) ? 'Fetching GPS..' :
+          (i==2 || i == 5 || i == 8) ? 'Fetching GPS...' : 'Fetching GPS.' ;
+          if(i-- == 0){
+            positionGranted = true;
+            return;
+          }else{
+            waitForPosition(i);
+          }
+        });
+      });
+    
+    
+  }
+
+
+  @override
+  void initState() {
+    waitForPosition(8);
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -118,11 +145,15 @@ class _StopWatchTimerPageState extends State<StopWatchTimerPage> {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(16),
             ),
-            color: (isStarted) ? Colors.red : Colors.green,
-            onPressed: (isStarted) ? stopWatchStop : startStopWatch,
+            color: (!positionGranted) ? Colors.blueGrey : (isStarted) ? Colors.red : Colors.green,
+            onPressed: (!positionGranted) ? (){}: (isStarted) ? stopWatchStop : startStopWatch,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: (isStarted) ? const [
+              children:  (!positionGranted) ?  [
+                 const Icon(Icons.gps_fixed_rounded),
+                  BuildText(text: positionGrantedString, size: 1.8)
+              ] 
+              : (isStarted) ? const [
                 Icon(Icons.stop),
                 BuildText(text: '  S T O P  ', size: 1.8)
               ] : const [
@@ -233,5 +264,5 @@ class _StopWatchTimerPageState extends State<StopWatchTimerPage> {
     }
     lastPosition = currentPosition;
   }
-
+  
 }

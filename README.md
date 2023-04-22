@@ -10,7 +10,7 @@ It is a collab project with my friend @Peterr181.
 
 ## ToDo
 
- - fix GPS permission checker
+ - fix GPS permission checker(kinda fixed, not the real solution though)
  - add Workouts, Settings and User tabs
  - impl User authorization and DB connection
 
