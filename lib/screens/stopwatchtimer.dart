@@ -33,7 +33,9 @@ class _StopWatchTimerPageState extends State<StopWatchTimerPage> {
   late Timer stopwatch;
   bool isStarted = false;
 
-  bool positionGranted = true;
+  bool positionGranted = false;
+  String positionGrantedString = 'Fetching GPS.';
+  Icon positionGrantedIcon = const Icon(Icons.gps_fixed_rounded);
   late Position lastPosition;
   List<Checkpoint> locationCheckpoints = [];
 
@@ -46,6 +48,34 @@ class _StopWatchTimerPageState extends State<StopWatchTimerPage> {
       currentPosition = position;
     }
   });
+
+  void waitForPosition(int  i) {
+    
+      Timer(const Duration(milliseconds: 500), () {
+        setState(() {
+          positionGrantedIcon = (i % 2 == 0) 
+          ? const Icon(Icons.gps_fixed_rounded)
+          : const Icon(Icons.gps_not_fixed_rounded);
+          positionGrantedString = (i==1 || i == 4|| i == 7) ? 'Fetching GPS..' :
+          (i==2 || i == 5 || i == 8) ? 'Fetching GPS.' : 'Fetching GPS...' ;
+          if(i-- == 0){
+            positionGranted = true;
+            return;
+          }else{
+            waitForPosition(i);
+          }
+        });
+      });
+    
+    
+  }
+
+
+  @override
+  void initState() {
+    waitForPosition(8);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -118,11 +148,14 @@ class _StopWatchTimerPageState extends State<StopWatchTimerPage> {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(16),
             ),
-            color: (isStarted) ? Colors.red : Colors.blue,
-            onPressed: (isStarted) ? stopWatchStop : startStopWatch,
+            color: (!positionGranted) ? Colors.blueGrey: (isStarted) ? Colors.red : Colors.blue,
+            onPressed: (!positionGranted) ? (){} : (isStarted) ? stopWatchStop : startStopWatch,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: (isStarted) ? const [
+              children: (!positionGranted) ? [
+                positionGrantedIcon,
+                BuildText(text: positionGrantedString, size: 1.8)
+              ]:(isStarted) ? const [
                 Icon(Icons.stop),
                 BuildText(text: '  S T O P  ', size: 1.8)
               ] : const [
