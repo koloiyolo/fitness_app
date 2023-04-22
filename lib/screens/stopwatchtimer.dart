@@ -55,7 +55,7 @@ class _StopWatchTimerPageState extends State<StopWatchTimerPage> {
       Timer(const Duration(milliseconds: 500), () {
         setState(() {
           positionGrantedString = (i==1 || i == 4|| i == 7) ? 'Fetching GPS..' :
-          (i==2 || i == 5 || i == 8) ? 'Fetching GPS...' : 'Fetching GPS.' ;
+          (i==2 || i == 5 || i == 8) ? 'Fetching GPS.' : 'Fetching GPS...' ;
           if(i-- == 0){
             positionGranted = true;
             return;
