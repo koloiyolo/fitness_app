@@ -21,7 +21,6 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF001e3c),
         body: SafeArea(
       child: Padding(
         padding: const EdgeInsets.all(16),
@@ -31,7 +30,6 @@ class _SplashScreenState extends State<SplashScreen> {
             const Text( 'Hey', 
             style: TextStyle(
               fontSize: 45,
-              color:  Color.fromARGB(255, 102, 178, 255)
             ) ,),
             const BuildText(text: 'Tell us something about you', size: 1.8),
             const SizedBox(height: 16),

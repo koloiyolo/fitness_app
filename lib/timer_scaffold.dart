@@ -35,7 +35,6 @@ class _TimerScaffoldState extends State<TimerScaffold> {
           children: [
             Expanded(child: page),
             NavigationBar(
-              backgroundColor: const Color(0xFF131734),
                 destinations: const [
                   NavigationDestination(icon: Icon(Icons.timer,), label: ''),
                   NavigationDestination(icon: Icon(Icons.list), label: ''),

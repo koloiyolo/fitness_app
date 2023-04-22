@@ -55,7 +55,6 @@ class _AppDrawerState extends State<AppDrawer> {
 
     return Scaffold(
       drawer: NavigationDrawer(
-        backgroundColor: const Color(0xFF131734),
           selectedIndex: index,
           onDestinationSelected: (value) {
             setState(() {
@@ -69,7 +68,6 @@ class _AppDrawerState extends State<AppDrawer> {
               child: Text('Hey ${user.get('name')}!',
               style: const TextStyle(
                 fontSize: 25,
-                color: Color.fromARGB(255, 102, 178, 255)
               ),),
             ),
             const NavigationDrawerDestination(
@@ -91,7 +89,6 @@ class _AppDrawerState extends State<AppDrawer> {
                 icon: Icon(Icons.settings), label: Text('Settings')),
           ]),
       appBar: AppBar(
-        backgroundColor: const Color(0xFF001e3c),
         title: Text((index == 0) ? 'Cardio':
         (index == 1) ? 'Sprint':
         (index == 2)? 'Cycling':
@@ -99,7 +96,6 @@ class _AppDrawerState extends State<AppDrawer> {
         (index == 0)? 'User data':
         'Settings')
       ),
-      backgroundColor: const Color(0xFF001e3c),
       body: page,
     );
   }

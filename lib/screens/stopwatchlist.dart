@@ -14,7 +14,6 @@ class StopWatchList extends StatelessWidget {
       itemBuilder: (context, index) => Card(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(24)),
-        color: const Color(0xFF131734),
         child: ExpansionTile(
           shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(24)),

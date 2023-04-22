@@ -118,7 +118,7 @@ class _StopWatchTimerPageState extends State<StopWatchTimerPage> {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(16),
             ),
-            color: (isStarted) ? Colors.red : Colors.blue,
+            color: (isStarted) ? Colors.red : Colors.green,
             onPressed: (isStarted) ? stopWatchStop : startStopWatch,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
