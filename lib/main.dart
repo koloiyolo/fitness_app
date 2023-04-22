@@ -7,6 +7,8 @@ late Box user;
 late Box data;
 
 Future<void> main() async {
+
+  //init local DBs
   await Hive.initFlutter();
   await Hive.openBox('user');
   data = await Hive.openBox('data');
@@ -42,6 +44,6 @@ class MyApp extends StatelessWidget {
             useMaterial3: true,
             brightness: Brightness.dark),
         themeMode: ThemeMode.system,
-        home: (user.isEmpty) ? const SplashScreen() : AppDrawer());
+        home: (user.isEmpty) ? const SplashScreen() : const AppDrawer());
   }
 }

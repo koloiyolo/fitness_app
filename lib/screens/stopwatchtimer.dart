@@ -16,11 +16,7 @@ class StopWatchTimerPage extends StatefulWidget {
 }
 
 class _StopWatchTimerPageState extends State<StopWatchTimerPage> {
-  @override
-  void initState() {
-    super.initState();
-    getLocationPermission();
-  }
+ 
 
 // time vars
   int hours = 0;
@@ -41,12 +37,13 @@ class _StopWatchTimerPageState extends State<StopWatchTimerPage> {
   late Position lastPosition;
   List<Checkpoint> locationCheckpoints = [];
 
+
+  // collect GPS locations as stream
   final StreamSubscription<Position> positionStream =
       Geolocator.getPositionStream(locationSettings: locationSettings)
           .listen((Position? position) {
     if (position != null) {
       currentPosition = position;
-      print(position.latitude);
     }
   });
 
@@ -102,7 +99,7 @@ class _StopWatchTimerPageState extends State<StopWatchTimerPage> {
               borderRadius: BorderRadius.circular(16),
             ),
             color: Colors.blueGrey,
-            onPressed: stopWatchPause,
+            onPressed: pauseStopWatch,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: const [
@@ -122,7 +119,7 @@ class _StopWatchTimerPageState extends State<StopWatchTimerPage> {
               borderRadius: BorderRadius.circular(16),
             ),
             color: (isStarted) ? Colors.red : Colors.blue,
-            onPressed: (isStarted) ? stopWatchStop : stopWatchStart,
+            onPressed: (isStarted) ? stopWatchStop : startStopWatch,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: (isStarted) ? const [
@@ -139,11 +136,11 @@ class _StopWatchTimerPageState extends State<StopWatchTimerPage> {
     );
   }
 
-  void stopWatchStart() {
+  void startStopWatch() {
     if (!isStarted) {
       isStarted = true;
       stopwatch = Timer.periodic(const Duration(milliseconds: 100), (timer) {
-        if ((seconds % 60 == 0) && deciseconds == 0 && positionGranted) {
+        if ((seconds % 60 == 0) && deciseconds == 0) {
           newCheckpoint();
         }
 
@@ -174,12 +171,12 @@ class _StopWatchTimerPageState extends State<StopWatchTimerPage> {
     }
   }
 
-  void stopWatchPause() {
+  void pauseStopWatch() {
     if (isStarted) {
       stopwatch.cancel();
       isStarted = false;
     } else if (minutes != 0 || seconds != 0 || deciseconds != 0 || hours != 0) {
-      stopWatchStart();
+      startStopWatch();
     }
   }
 
@@ -237,18 +234,4 @@ class _StopWatchTimerPageState extends State<StopWatchTimerPage> {
     lastPosition = currentPosition;
   }
 
-  Future<void> getLocationPermission() async {
-    var _permissionGranted = await Geolocator.checkPermission();
-
-    if (_permissionGranted != LocationPermission.always ||
-        _permissionGranted != LocationPermission.whileInUse) {
-      await Geolocator.requestPermission();
-    }
-
-    if (_permissionGranted != LocationPermission.always ||
-        _permissionGranted != LocationPermission.whileInUse) {
-      positionGranted = false;
-    }
-    positionGranted = true;
-  }
 }

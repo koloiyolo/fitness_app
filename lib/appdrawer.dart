@@ -3,6 +3,8 @@ import 'package:fitness_app/screens/settings.dart';
 import 'package:fitness_app/timer_scaffold.dart';
 
 
+
+
 class AppDrawer extends StatefulWidget {
   const AppDrawer({super.key});
 
@@ -11,12 +13,25 @@ class AppDrawer extends StatefulWidget {
 }
 
 class _AppDrawerState extends State<AppDrawer> {
+
+
+ @override
+  void initState() {
+    super.initState();
+
+    //check GPS perms
+    getLocationPermission();
+  }
+
   Widget page = const Placeholder();
   late Icon icon;
   var index = 0;
 
+
   @override
   Widget build(BuildContext context) {
+
+    //AppDrawer logic
     switch (index) {
       case 0:
         page = TimerScaffold(list: cardioList, boxName: 'Cardio');
@@ -40,7 +55,7 @@ class _AppDrawerState extends State<AppDrawer> {
 
     return Scaffold(
       drawer: NavigationDrawer(
-        backgroundColor: Color(0xFF071b2f),
+        backgroundColor: const Color(0xFF131734),
           selectedIndex: index,
           onDestinationSelected: (value) {
             setState(() {
@@ -51,7 +66,11 @@ class _AppDrawerState extends State<AppDrawer> {
           children: [
             Padding(
               padding: const EdgeInsets.all(16.0),
-              child: BuildText(text: 'Hey ${user.get('name')}!', size: 1.5),
+              child: Text('Hey ${user.get('name')}!',
+              style: const TextStyle(
+                fontSize: 25,
+                color: Color.fromARGB(255, 102, 178, 255)
+              ),),
             ),
             const NavigationDrawerDestination(
                 icon: Icon(Icons.directions_run_rounded),
@@ -85,3 +104,15 @@ class _AppDrawerState extends State<AppDrawer> {
     );
   }
 }
+Future<void> getLocationPermission() async {
+    var permissionGranted = await Geolocator.checkPermission();
+
+    if (permissionGranted != LocationPermission.always ||
+        permissionGranted != LocationPermission.whileInUse) {
+      await Geolocator.requestPermission();
+    }
+
+    if (permissionGranted != LocationPermission.always ||
+        permissionGranted != LocationPermission.whileInUse) {
+    }
+  }

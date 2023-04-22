@@ -1,5 +1,4 @@
 import 'package:fitness_app/appdrawer.dart';
-import 'package:fitness_app/timer_scaffold.dart';
 import 'package:fitness_app/imports.dart';
 import 'package:fitness_app/objects/user.dart';
 
