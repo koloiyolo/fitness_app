@@ -4,7 +4,10 @@ const LocationSettings locationSettings = LocationSettings(
   accuracy: LocationAccuracy.high,
   distanceFilter: 20,
 );
+
 late Position currentPosition;
+bool positionGranted = false;
+
 
 class StopWatchTimerPage extends StatefulWidget {
   final String box;
@@ -33,7 +36,7 @@ class _StopWatchTimerPageState extends State<StopWatchTimerPage> {
   late Timer stopwatch;
   bool isStarted = false;
 
-  bool positionGranted = false;
+  
   String positionGrantedString = 'Fetching GPS.';
   Icon positionGrantedIcon = const Icon(Icons.gps_fixed_rounded);
   late Position lastPosition;
@@ -73,7 +76,10 @@ class _StopWatchTimerPageState extends State<StopWatchTimerPage> {
 
   @override
   void initState() {
-    waitForPosition(8);
+    if(!positionGranted){
+      waitForPosition(8);
+    }
+    
     super.initState();
   }
 
