@@ -1,8 +1,10 @@
 # fitness_app(WIP)
 
 Simple app to track your cardio routes and fitness progress
+It is collab project with my friend @Peterr181
 
-<img src="https://user-images.githubusercontent.com/23361087/233684921-eff99f31-9504-403a-ab35-b0a2a139c149.png" width=25% height=25%><img src="https://user-images.githubusercontent.com/23361087/233684494-54de76ba-bdd8-4781-bef5-13d6d758e04f.gif" width=25% height=25%><img src="https://user-images.githubusercontent.com/23361087/233647207-ab80ab67-367a-4db1-a1b9-316a30414669.png" width=25% height=25%>
+<img src="https://user-images.githubusercontent.com/23361087/233792205-f55c4926-2c23-41b7-abcd-abddf0df3fa5.png" width=22% height=22%><img src="https://user-images.githubusercontent.com/23361087/233792198-dc135753-e2ab-4f5c-bb28-e539840e720a.png" width=22% height=22%><img src="https://user-images.githubusercontent.com/23361087/233792233-314f247f-56dd-4dda-8411-9c32f4e83b7b.png" width=22% height=22%><img src="https://user-images.githubusercontent.com/23361087/233792246-873c05af-a1a2-42e0-bece-15c0cd3dd3bf.png" width=22% height=22%>
+
 
 
 ## ToDo
