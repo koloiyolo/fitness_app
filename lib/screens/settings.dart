@@ -5,10 +5,16 @@ class SettingsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: ElevatedButton(onPressed: (){
+    return Column(
+      children: [
+        ElevatedButton(onPressed: (){
         user.deleteAll(user.keys);
       }, child: const Text('Delete user data')),
+      ElevatedButton(onPressed: (){
+        data.deleteAll(user.keys);
+      }, child: const Text('Delete all data')),
+      ],
+      
     );
   }
 }

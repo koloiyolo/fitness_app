@@ -80,4 +80,6 @@ List<StopWatch> stopWatchesFromList(List list){
     return dummy;
   }
 
-List<StopWatch> runningList = [];
+List<StopWatch> cardioList = [];
+List<StopWatch> sprintList = [];
+List<StopWatch> cyclingList = [];

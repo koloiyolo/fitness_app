@@ -9,25 +9,25 @@ class StopWatchList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: runningList.length,
+      itemCount: list.length,
       itemBuilder: (context, index) => ExpansionTile(
         title: BuildText(
             text:
-                ' ${index + 1}.  ${dateToString(runningList[index].date)}   ${convMinSecHour(runningList[index].date.hour)}:${convMinSecHour(runningList[index].date.minute)}',
+                ' ${index + 1}.  ${dateToString(list[index].date)}   ${convMinSecHour(list[index].date.hour)}:${convMinSecHour(list[index].date.minute)}',
             size: 1.7),
         children: [
           const SizedBox(height: 16),
           BuildText(
-              text: 'Time: ${runningList[index].timeToString()}', size: 1.7),
+              text: 'Time: ${list[index].timeToString()}', size: 1.7),
           const SizedBox(height: 16),
           BuildText(
-              text: 'Distance: ${sumOfDistance(runningList[index].checkpoints).round()} m', size: 1.7),
+              text: 'Distance: ${sumOfDistance(list[index].checkpoints).round()} m', size: 1.7),
           const SizedBox(height: 16),
           BuildText(
-              text: 'Speed: ${((sumOfDistance(runningList[index].checkpoints)*3.6)/(
-                runningList[index].seconds 
-                +(60*runningList[index].minutes) 
-                +(3600*runningList[index].hours))).toStringAsFixed(2)} km/h', size: 1.7),
+              text: 'Speed: ${((sumOfDistance(list[index].checkpoints)*3.6)/(
+                list[index].seconds 
+                +(60*list[index].minutes) 
+                +(3600*list[index].hours))).toStringAsFixed(2)} km/h', size: 1.7),
           const SizedBox(height: 16),
         ],
       ),

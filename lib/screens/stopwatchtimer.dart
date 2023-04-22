@@ -86,7 +86,7 @@ class _StopWatchTimerPageState extends State<StopWatchTimerPage> {
           child: SizedBox(),
         ),
         BuildText(
-            text: 'Total: ${sumOfDistance(locationCheckpoints).round()}m',
+            text: 'Total:   ${sumOfDistance(locationCheckpoints).round()}m',
             size: 2),
         const Expanded(
           flex: 1,
@@ -94,62 +94,45 @@ class _StopWatchTimerPageState extends State<StopWatchTimerPage> {
         ),
         Padding(
           padding:
-              const EdgeInsets.only(left: 30, right: 30, bottom: 16, top: 16),
+              const EdgeInsets.only(left: 30, right: 30, bottom: 15, top: 15),
           child: MaterialButton(
             visualDensity: VisualDensity.comfortable,
             padding: const EdgeInsets.all(21),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(16),
             ),
-            color: const Color.fromARGB(125, 96, 125, 139),
+            color: Colors.blueGrey,
             onPressed: stopWatchPause,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: const [
                 Icon(Icons.pause),
-                BuildText(text: '  PAUSE  ', size: 1.8)
+                BuildText(text: '  P A U S E  ', size: 1.8)
               ],
             ),
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(left: 30, right: 30, bottom: 16),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              MaterialButton(
-                visualDensity: VisualDensity.comfortable,
-                padding: const EdgeInsets.all(21),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16),
-                ),
-                color: Colors.green,
-                onPressed: stopWatchStart,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
-                    Icon(Icons.play_arrow),
-                    BuildText(text: '  START  ', size: 1.8)
-                  ],
-                ),
-              ),
-              MaterialButton(
-                visualDensity: VisualDensity.comfortable,
-                padding: const EdgeInsets.all(21),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16),
-                ),
-                color: Colors.red,
-                onPressed: stopWatchStop,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
-                    Icon(Icons.stop),
-                    BuildText(text: '  STOP  ', size: 1.8)
-                  ],
-                ),
-              ),
-            ],
+          padding:
+              const EdgeInsets.only(left: 30, right: 30, bottom: 30, top: 15),
+          child: MaterialButton(
+            visualDensity: VisualDensity.comfortable,
+            padding: const EdgeInsets.all(21),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(16),
+            ),
+            color: (isStarted) ? Colors.red : Colors.blue,
+            onPressed: (isStarted) ? stopWatchStop : stopWatchStart,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: (isStarted) ? const [
+                Icon(Icons.stop),
+                BuildText(text: '  S T O P  ', size: 1.8)
+              ] : const [
+                Icon(Icons.play_arrow_rounded),
+                BuildText(text: '  S T A R T  ', size: 1.8)
+              ],
+            ),
           ),
         ),
       ],

@@ -1,4 +1,5 @@
-import 'package:fitness_app/app_scaffold.dart';
+import 'package:fitness_app/appdrawer.dart';
+import 'package:fitness_app/timer_scaffold.dart';
 import 'package:fitness_app/imports.dart';
 import 'package:fitness_app/objects/user.dart';
 
@@ -98,7 +99,7 @@ class _SplashScreenState extends State<SplashScreen> {
                             DateTime.now());
 
                         Navigator.pushReplacement(context,
-                            MaterialPageRoute(builder: ((_) => AppScaffold())));
+                            MaterialPageRoute(builder: ((_) => const AppDrawer())));
                       } else {
                         showDialog(
                             context: context,
