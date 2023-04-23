@@ -4,9 +4,7 @@ Simple app to track your cardio routes and fitness progress.
 
 It is a collab project with my friend @Peterr181.
 
-<img src="https://user-images.githubusercontent.com/23361087/233792205-f55c4926-2c23-41b7-abcd-abddf0df3fa5.png" width=22% height=22%><img src="https://user-images.githubusercontent.com/23361087/233792198-dc135753-e2ab-4f5c-bb28-e539840e720a.png" width=22% height=22%><img src="https://user-images.githubusercontent.com/23361087/233792233-314f247f-56dd-4dda-8411-9c32f4e83b7b.png" width=22% height=22%><img src="https://user-images.githubusercontent.com/23361087/233792246-873c05af-a1a2-42e0-bece-15c0cd3dd3bf.png" width=22% height=22%>
-
-
+<img src="https://user-images.githubusercontent.com/23361087/233851944-d213feee-2c6a-417e-8359-ef0a53f408e4.png" width=22% height=22%><img src="https://user-images.githubusercontent.com/23361087/233851937-9f463733-227a-4227-9df1-bda4f3a58a6a.png" width=22% height=22%><img src="https://user-images.githubusercontent.com/23361087/233851921-85fea794-ed48-44a9-af61-5492ac451a5e.png" width=22% height=22%>
 
 ## ToDo
 
