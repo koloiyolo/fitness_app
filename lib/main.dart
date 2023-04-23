@@ -1,5 +1,4 @@
 import 'package:fitness_app/appdrawer.dart';
-import 'package:fitness_app/objects/exercise.dart';
 import 'imports.dart';
 import 'package:fitness_app/screens/splash.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -51,6 +50,33 @@ Future<void> main() async {
     if (data.get('sunday') != null) {
       sunday = exercisesFromList(data.get('sunday'));
     }
+  }
+
+  if (data.isNotEmpty) {
+    if (data.get('exerciseDays') != null) {
+      exerciseDays = exerciseDaysFromList(data.get('exerciseDays'));
+    }
+  }
+
+  if (exerciseDays.last.date == dateToYYYYMMDD(DateTime.now())) {
+    today = exerciseDays.last;
+  } else {
+    today = ExerciseDay(
+        date: dateToYYYYMMDD(DateTime.now()),
+        exercises: (DateTime.now().weekday == 1)
+            ? monday
+            : (DateTime.now().weekday == 2)
+                ? tuesday
+                : (DateTime.now().weekday == 3)
+                    ? wednesday
+                    : (DateTime.now().weekday == 4)
+                        ? thursday
+                        : (DateTime.now().weekday == 5)
+                            ? friday
+                            : (DateTime.now().weekday == 6)
+                                ? saturday
+                                : sunday);
+    exerciseDays.add(today);
   }
 
   runApp(const MyApp());

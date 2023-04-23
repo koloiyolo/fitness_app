@@ -44,16 +44,33 @@ class ExerciseDay {
   ExerciseDay({required this.date, required this.exercises});
 
   List toList() {
-    return [date, exercises];
+    return [date, exercisesToList(exercises)];
   }
 }
 
 ExerciseDay exerciseDayFromList(List list) {
-  return ExerciseDay(date: list[0], exercises: list[1]);
+  return ExerciseDay(date: list[0], exercises: exercisesFromList(list[1]));
 }
 
-//main list
+List <ExerciseDay> exerciseDaysFromList(List list){
+  List <ExerciseDay> dummy = [];
+  for(var element in list){
+    dummy.add(exerciseDayFromList(element));
+  }
+  return dummy;
+}
+List exerciseDaysToList(List <ExerciseDay> list){
+  List dummy = [];
+  for(var element in list){
+    dummy.add(element.toList());
+  }
+  return dummy;
+}
+
+//main lists
 List<ExerciseDay> exerciseDays = [];
+
+late ExerciseDay today;
 
 // preset lists
 List<Exercise> monday = [];

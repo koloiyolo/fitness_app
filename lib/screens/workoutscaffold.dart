@@ -1,4 +1,5 @@
 import 'package:fitness_app/imports.dart';
+import 'package:fitness_app/screens/workoutpages/workoutlist.dart';
 import 'package:fitness_app/screens/workoutpages/workoutpresets.dart';
 
 class WorkoutScaffold extends StatefulWidget {
@@ -16,7 +17,7 @@ class _WorkoutScaffoldState extends State<WorkoutScaffold> {
   Widget build(BuildContext context) {
     switch (index) {
       case 0:
-        page = const Placeholder();
+        page = const WorkoutList();
         break;
       case 1:
         page = const Placeholder();
