@@ -85,7 +85,7 @@ class _WorkoutListState extends State<WorkoutList> {
                         size: 35,
                         color: Color.fromARGB(255, 38, 38, 38),
                       ),
-                      Text('A D D',
+                      Text('   A D D',
                           style: TextStyle(
                               color: Color.fromARGB(255, 38, 38, 38),
                               fontSize: 30))
@@ -108,8 +108,8 @@ class _WorkoutListState extends State<WorkoutList> {
         children: [
           Text(exercise.name,
               style: const TextStyle(fontSize: 25, color: Colors.amber)),
-          BuildText(text: 'Sets:  ${exercise.sets}', size: 1.5),
-          BuildText(text: 'Reps:  ${exercise.reps}', size: 1.5),
+          BuildText(text: 'Sets:  ${exercise.sets}', size: 1.2),
+          BuildText(text: 'Reps:  ${exercise.reps}', size: 1.2),
           const SizedBox(height: 24),
           MaterialButton(
             onPressed: () {

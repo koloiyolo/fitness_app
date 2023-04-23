@@ -31,7 +31,7 @@ class _SplashScreenState extends State<SplashScreen> {
             const Text(
               'Hey',
               style: TextStyle(
-                  fontSize: 45, color: Color.fromARGB(255, 102, 178, 255)),
+                  fontSize: 45, color: Colors.amber,),
             ),
             Image.asset('lib/assets/bear.gif', scale: 1),
             const BuildText(text: 'Tell us something about you', size: 1.8),

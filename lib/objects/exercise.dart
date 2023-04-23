@@ -1,4 +1,4 @@
-import 'package:fitness_app/imports.dart';
+
 
 class Exercise {
   String name;

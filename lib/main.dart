@@ -58,7 +58,7 @@ Future<void> main() async {
     }
   }
 
-  if (exerciseDays.last.date == dateToYYYYMMDD(DateTime.now())) {
+  if (exerciseDays.isNotEmpty && exerciseDays.last.date == dateToYYYYMMDD(DateTime.now())) {
     today = exerciseDays.last;
   } else {
     today = ExerciseDay(
