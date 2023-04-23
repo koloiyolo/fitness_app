@@ -39,3 +39,6 @@ double sumOfDistance(List<Checkpoint> checkpoints){
 // String dateTimeToString(DateTime date){
 //   return '${date.year}-${date.month}-${date.day} ${date.hour}:${date.minute}:${date.second}"';
 // }
+String dateToYYYYMMDD(DateTime date){
+  return '${date.year}/${convMinSecHour(date.month)}/${convMinSecHour(date.day)}';
+}

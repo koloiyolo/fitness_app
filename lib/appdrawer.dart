@@ -1,5 +1,6 @@
 import 'package:fitness_app/imports.dart';
 import 'package:fitness_app/screens/settings.dart';
+import 'package:fitness_app/screens/userpage.dart';
 import 'package:fitness_app/timer_scaffold.dart';
 
 
@@ -46,7 +47,7 @@ class _AppDrawerState extends State<AppDrawer> {
         page = const Placeholder();
         break;
       case 4:
-        page = const Placeholder();
+        page = const UserPage();
         break;
       case 5:
         page = const SettingsPage();
@@ -94,7 +95,7 @@ class _AppDrawerState extends State<AppDrawer> {
         (index == 1) ? 'Sprint':
         (index == 2)? 'Cycling':
         (index == 3)? 'Workouts':
-        (index == 0)? 'User data':
+        (index == 4)? '${user.get('name')}\'s profile':
         'Settings')
       ),
       body: page,

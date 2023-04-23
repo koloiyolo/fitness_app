@@ -44,33 +44,33 @@ class MyApp extends StatelessWidget {
 
             //blue
 
-            colorScheme: const ColorScheme(
-                brightness: Brightness.dark,
-                primary: Colors.white,
-                onPrimary: Color(0xFF071b2f),
-                secondary: Color(0xFF071b2f),
-                onSecondary: Colors.blue,
-                error: Colors.black,
-                onError: Colors.red,
-                background: Color(0xFF001e3c),
-                onBackground: Colors.white,
-                surface: Color(0xFF001e3c),
-                onSurface: Colors.white),
+            // colorScheme: const ColorScheme(
+            //     brightness: Brightness.dark,
+            //     primary: Colors.white,
+            //     onPrimary: Color(0xFF071b2f),
+            //     secondary: Color(0xFF071b2f),
+            //     onSecondary: Colors.blue,
+            //     error: Colors.black,
+            //     onError: Colors.red,
+            //     background: Color(0xFF001e3c),
+            //     onBackground: Colors.white,
+            //     surface: Color(0xFF001e3c),
+            //     onSurface: Colors.white),
 
               //black/yellow/white
 
-            // colorScheme: const ColorScheme(
-            //     brightness: Brightness.dark,
-            //     primary: Color(0xFFFFD369),
-            //     onPrimary: Colors.black,
-            //     secondary: Color(0xFF393E46),
-            //     onSecondary: Color(0xFFFFD369),
-            //     error: Colors.black,
-            //     onError: Colors.red,
-            //     background: Color(0xFF222831),
-            //     onBackground: Colors.white,
-            //     surface: Color(0xFF222831),
-            //     onSurface: Colors.white),
+            colorScheme: const ColorScheme(
+                brightness: Brightness.dark,
+                primary: Colors.white,
+                onPrimary: Colors.black,
+                secondary: Color.fromARGB(255, 74, 74, 74),
+                onSecondary: Colors.amber,
+                error: Colors.black,
+                onError: Colors.red,
+                background: Color.fromARGB(255, 38, 38, 38),
+                onBackground: Colors.white,
+                surface: Color.fromARGB(255, 38, 38, 38),
+                onSurface: Colors.white),
             useMaterial3: true,
             brightness: Brightness.dark),
         themeMode: ThemeMode.system,
