@@ -1,7 +1,8 @@
 import 'package:fitness_app/imports.dart';
 import 'package:fitness_app/screens/settings.dart';
 import 'package:fitness_app/screens/userpage.dart';
-import 'package:fitness_app/timer_scaffold.dart';
+import 'package:fitness_app/screens/workoutscaffold.dart';
+import 'package:fitness_app/screens/timer_scaffold.dart';
 
 
 
@@ -44,7 +45,7 @@ class _AppDrawerState extends State<AppDrawer> {
         page = TimerScaffold(list: cyclingList, boxName: 'Cycling');
         break;
       case 3:
-        page = const Placeholder();
+        page = const WorkoutScaffold();
         break;
       case 4:
         page = const UserPage();

@@ -1,6 +1,5 @@
 import 'package:fitness_app/imports.dart';
 
-
 const LocationSettings locationSettings = LocationSettings(
   accuracy: LocationAccuracy.high,
   distanceFilter: 20,
@@ -8,7 +7,6 @@ const LocationSettings locationSettings = LocationSettings(
 
 late Position currentPosition;
 bool positionGranted = false;
-
 
 class StopWatchTimerPage extends StatefulWidget {
   final String box;
@@ -20,8 +18,6 @@ class StopWatchTimerPage extends StatefulWidget {
 }
 
 class _StopWatchTimerPageState extends State<StopWatchTimerPage> {
- 
-
 // time vars
   int hours = 0;
   int minutes = 0;
@@ -37,12 +33,10 @@ class _StopWatchTimerPageState extends State<StopWatchTimerPage> {
   late Timer stopwatch;
   bool isStarted = false;
 
-  
   String positionGrantedString = 'Fetching GPS.';
   Icon positionGrantedIcon = const Icon(Icons.gps_fixed_rounded);
   late Position lastPosition;
   List<Checkpoint> locationCheckpoints = [];
-
 
   // collect GPS locations as stream
   final StreamSubscription<Position> positionStream =
@@ -53,34 +47,33 @@ class _StopWatchTimerPageState extends State<StopWatchTimerPage> {
     }
   });
 
-  void waitForPosition(int  i) {
-    
-      Timer(const Duration(milliseconds: 500), () {
-        setState(() {
-          positionGrantedIcon = (i % 2 == 0) 
-          ? const Icon(Icons.gps_fixed_rounded)
-          : const Icon(Icons.gps_not_fixed_rounded);
-          positionGrantedString = (i==1 || i == 4|| i == 7) ? 'Fetching GPS..' :
-          (i==2 || i == 5 || i == 8) ? 'Fetching GPS.' : 'Fetching GPS...' ;
-          if(i-- == 0){
-            positionGranted = true;
-            return;
-          }else{
-            waitForPosition(i);
-          }
-        });
+  void waitForPosition(int i) {
+    Timer(const Duration(milliseconds: 500), () {
+      setState(() {
+        positionGrantedIcon = (i % 2 == 0)
+            ? const Icon(Icons.gps_fixed_rounded)
+            : const Icon(Icons.gps_not_fixed_rounded);
+        positionGrantedString = (i == 1 || i == 4 || i == 7)
+            ? 'Fetching GPS..'
+            : (i == 2 || i == 5 || i == 8)
+                ? 'Fetching GPS.'
+                : 'Fetching GPS...';
+        if (i-- == 0) {
+          positionGranted = true;
+          return;
+        } else {
+          waitForPosition(i);
+        }
       });
-    
-    
+    });
   }
-
 
   @override
   void initState() {
-    if(!positionGranted){
+    if (!positionGranted) {
       waitForPosition(8);
     }
-    
+
     super.initState();
   }
 
@@ -155,20 +148,32 @@ class _StopWatchTimerPageState extends State<StopWatchTimerPage> {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(16),
             ),
-            color: (!positionGranted) ? Colors.grey[600] : (isStarted) ? Colors.red : Colors.amber[800],
-            onPressed: (!positionGranted) ? (){} : (isStarted) ? stopWatchStop : startStopWatch,
+            color: (!positionGranted)
+                ? Colors.grey[600]
+                : (isStarted)
+                    ? Colors.red
+                    : Colors.amber[800],
+            onPressed: (!positionGranted)
+                ? () {}
+                : (isStarted)
+                    ? stopWatchStop
+                    : startStopWatch,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: (!positionGranted) ? [
-                positionGrantedIcon,
-                BuildText(text: positionGrantedString, size: 1.8)
-              ]:(isStarted) ? const [
-                Icon(Icons.stop),
-                BuildText(text: '  S T O P  ', size: 1.8)
-              ] : const [
-                Icon(Icons.play_arrow_rounded),
-                BuildText(text: '  S T A R T  ', size: 1.8)
-              ],
+              children: (!positionGranted)
+                  ? [
+                      positionGrantedIcon,
+                      BuildText(text: positionGrantedString, size: 1.8)
+                    ]
+                  : (isStarted)
+                      ? const [
+                          Icon(Icons.stop),
+                          BuildText(text: '  S T O P  ', size: 1.8)
+                        ]
+                      : const [
+                          Icon(Icons.play_arrow_rounded),
+                          BuildText(text: '  S T A R T  ', size: 1.8)
+                        ],
             ),
           ),
         ),
@@ -273,5 +278,4 @@ class _StopWatchTimerPageState extends State<StopWatchTimerPage> {
     }
     lastPosition = currentPosition;
   }
-
 }

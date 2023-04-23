@@ -14,34 +14,36 @@ class _UserPageState extends State<UserPage> {
   @override
   Widget build(BuildContext context) {
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-
-      Card(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(32)
+      Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Card(
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(32)),
+          child: Column(
+            children: [
+              Center(
+                  child: Image.asset(
+                'lib/assets/user.gif',
+                height: 250,
+              )),
+              Padding(
+                padding: const EdgeInsets.only(left: 24),
+                child: BuildText(text: 'Name: ${user.get('name')}', size: 1.8),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 24),
+                child: BuildText(
+                    text: 'Surname: ${user.get('surname')}', size: 1.8),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(24),
+                child:
+                    BuildText(text: 'Joined: ${dateToString(date)}', size: 1.3),
+              ),
+            ],
+          ),
         ),
-        child: Wrap(
-          children: [
-            Center(
-          child: Image.asset(
-        'lib/assets/user.gif',
-        height: 250,
-      )),
-      Padding(
-        padding: const EdgeInsets.only(left: 24),
-        child: BuildText(text: 'Name: ${user.get('name')}', size: 1.8),
       ),
-      Padding(
-        padding: const EdgeInsets.only(left: 24),
-        child: BuildText(text: 'Surname: ${user.get('surname')}', size: 1.8),
-      ),
-      Padding(
-        padding: const EdgeInsets.all(24),
-        child: BuildText(text: 'Joined: ${dateToString(date)}', size: 1.3),
-      ),
-          ],
-        ),
-      ),
-     
       const Expanded(child: SizedBox()),
       (user.get('hasCard'))
           ? Padding(
@@ -66,7 +68,9 @@ class _UserPageState extends State<UserPage> {
                             onPressed: () {
                               Navigator.pop(context);
                             },
-                            child: const Text('Ok', style: TextStyle(fontSize: 20, color: Colors.black)),
+                            child: const Text('Ok',
+                                style: TextStyle(
+                                    fontSize: 20, color: Colors.black)),
                           ),
                         ],
                       ),
@@ -80,7 +84,7 @@ class _UserPageState extends State<UserPage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: const [
                       Icon(Icons.card_membership_rounded, size: 50),
-                      BuildText(text: ' Show gym card', size: 2)
+                      BuildText(text: ' Show Card', size: 2)
                     ],
                   )),
             )
@@ -136,7 +140,7 @@ class _UserPageState extends State<UserPage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: const [
                       Icon(Icons.add_circle_outline_rounded, size: 50),
-                      BuildText(text: ' Add gym card', size: 2)
+                      BuildText(text: ' Add Card', size: 2)
                     ],
                   )),
             )
