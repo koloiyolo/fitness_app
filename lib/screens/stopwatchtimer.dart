@@ -1,4 +1,5 @@
 import 'package:fitness_app/imports.dart';
+import 'package:flutter/cupertino.dart';
 
 const LocationSettings locationSettings = LocationSettings(
   accuracy: LocationAccuracy.high,
@@ -154,7 +155,7 @@ class _StopWatchTimerPageState extends State<StopWatchTimerPage> {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(16),
             ),
-            color: (!positionGranted) ? Colors.blueGrey: (isStarted) ? Colors.red : Colors.blue,
+            color: (!positionGranted) ? Colors.blueGrey : (isStarted) ? Colors.red : Colors.blue,
             onPressed: (!positionGranted) ? (){} : (isStarted) ? stopWatchStop : startStopWatch,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,

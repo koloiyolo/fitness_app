@@ -68,7 +68,7 @@ class _AppDrawerState extends State<AppDrawer> {
               child: Text('Hey ${user.get('name')}!',
               style: const TextStyle(
                 fontSize: 25,
-                color: Color.fromARGB(255, 102, 178, 255)
+                //color: Color.fromARGB(255, 102, 178, 255)
               ),),
             ),
             const NavigationDrawerDestination(

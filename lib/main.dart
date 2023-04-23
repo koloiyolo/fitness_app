@@ -40,18 +40,37 @@ class MyApp extends StatelessWidget {
             useMaterial3: true,
             brightness: Brightness.light),
         darkTheme: ThemeData(
+
+
+            //blue
+
             colorScheme: const ColorScheme(
                 brightness: Brightness.dark,
                 primary: Colors.white,
                 onPrimary: Color(0xFF071b2f),
                 secondary: Color(0xFF071b2f),
-                onSecondary: Colors.white,
+                onSecondary: Colors.blue,
                 error: Colors.black,
                 onError: Colors.red,
                 background: Color(0xFF001e3c),
                 onBackground: Colors.white,
                 surface: Color(0xFF001e3c),
                 onSurface: Colors.white),
+
+              //black/yellow/white
+
+            // colorScheme: const ColorScheme(
+            //     brightness: Brightness.dark,
+            //     primary: Color(0xFFFFD369),
+            //     onPrimary: Colors.black,
+            //     secondary: Color(0xFF393E46),
+            //     onSecondary: Color(0xFFFFD369),
+            //     error: Colors.black,
+            //     onError: Colors.red,
+            //     background: Color(0xFF222831),
+            //     onBackground: Colors.white,
+            //     surface: Color(0xFF222831),
+            //     onSurface: Colors.white),
             useMaterial3: true,
             brightness: Brightness.dark),
         themeMode: ThemeMode.system,
