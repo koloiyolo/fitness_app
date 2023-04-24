@@ -7,6 +7,7 @@ late Box user;
 late Box data;
 
 Future<void> main() async {
+
   //init local DBs
   await Hive.initFlutter();
   await Hive.openBox('user');
@@ -15,7 +16,7 @@ Future<void> main() async {
 
   //fetch data from DB
 
-  if (data.isNotEmpty) {
+
     if (data.get('Cardio') != null) {
       cardioList = stopWatchesFromList(data.get('Cardio'));
     }
@@ -25,10 +26,9 @@ Future<void> main() async {
     if (data.get('Cycling') != null) {
       cyclingList = stopWatchesFromList(data.get('Cycling'));
     }
-  }
 
-  //preset lists
-  if (data.isNotEmpty) {
+    //preset lists
+
     if (data.get('monday') != null) {
       monday = exercisesFromList(data.get('monday'));
     }
@@ -50,35 +50,56 @@ Future<void> main() async {
     if (data.get('sunday') != null) {
       sunday = exercisesFromList(data.get('sunday'));
     }
-  }
 
-  if (data.isNotEmpty) {
+    if (data.get('today') != null) {
+     today = exerciseDayFromList(data.get('today'));
+    } else {
+      today = ExerciseDay(
+          date: dateToYYYYMMDD(DateTime.now()),
+          exercises: (DateTime.now().weekday == 1)
+              ? monday
+              : (DateTime.now().weekday == 2)
+                  ? tuesday
+                  : (DateTime.now().weekday == 3)
+                      ? wednesday
+                      : (DateTime.now().weekday == 4)
+                          ? thursday
+                          : (DateTime.now().weekday == 5)
+                              ? friday
+                              : (DateTime.now().weekday == 6)
+                                  ? saturday
+                                  : sunday);
+      data.put('today', today.toList());
+    }
+
     if (data.get('exerciseDays') != null) {
       exerciseDays = exerciseDaysFromList(data.get('exerciseDays'));
     }
-  }
 
-  if (exerciseDays.isNotEmpty && exerciseDays.last.date == dateToYYYYMMDD(DateTime.now())) {
-    today = exerciseDays.last;
-  } else {
-    today = ExerciseDay(
-        date: dateToYYYYMMDD(DateTime.now()),
-        exercises: (DateTime.now().weekday == 1)
-            ? monday
-            : (DateTime.now().weekday == 2)
-                ? tuesday
-                : (DateTime.now().weekday == 3)
-                    ? wednesday
-                    : (DateTime.now().weekday == 4)
-                        ? thursday
-                        : (DateTime.now().weekday == 5)
-                            ? friday
-                            : (DateTime.now().weekday == 6)
-                                ? saturday
-                                : sunday);
+ if(today.date != dateToYYYYMMDD(DateTime.now())){
     exerciseDays.add(today);
+
+        data.put('exerciseDays', exerciseDaysToList(exerciseDays));
+
+        today = ExerciseDay(
+          date: dateToYYYYMMDD(DateTime.now()),
+          exercises: (DateTime.now().weekday == 1)
+              ? monday
+              : (DateTime.now().weekday == 2)
+                  ? tuesday
+                  : (DateTime.now().weekday == 3)
+                      ? wednesday
+                      : (DateTime.now().weekday == 4)
+                          ? thursday
+                          : (DateTime.now().weekday == 5)
+                              ? friday
+                              : (DateTime.now().weekday == 6)
+                                  ? saturday
+                                  : sunday);
+      data.put('today', today.toList());
   }
 
+ 
   runApp(const MyApp());
 }
 

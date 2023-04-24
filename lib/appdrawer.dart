@@ -36,16 +36,16 @@ class _AppDrawerState extends State<AppDrawer> {
     //AppDrawer logic
     switch (index) {
       case 0:
-        page = TimerScaffold(list: cardioList, boxName: 'Cardio');
+        page = const WorkoutScaffold();
         break;
       case 1:
-        page = TimerScaffold(list: sprintList, boxName: 'Sprint');
+        page = TimerScaffold(list: cardioList, boxName: 'Cardio');
         break;
       case 2:
-        page = TimerScaffold(list: cyclingList, boxName: 'Cycling');
+        page = TimerScaffold(list: sprintList, boxName: 'Sprint');
         break;
       case 3:
-        page = const WorkoutScaffold();
+        page = TimerScaffold(list: cyclingList, boxName: 'Cycling');
         break;
       case 4:
         page = const UserPage();
@@ -74,6 +74,9 @@ class _AppDrawerState extends State<AppDrawer> {
               ),),
             ),
             const NavigationDrawerDestination(
+                icon: Icon(Icons.fitness_center_rounded),
+                label: Text('Workout')),
+            const NavigationDrawerDestination(
                 icon: Icon(Icons.directions_run_rounded),
                 label: Text('Cardio')),
             const NavigationDrawerDestination(
@@ -83,19 +86,16 @@ class _AppDrawerState extends State<AppDrawer> {
                 icon: Icon(Icons.pedal_bike_rounded), 
                 label: Text('Cycling')),
             const NavigationDrawerDestination(
-                icon: Icon(Icons.fitness_center_rounded),
-                label: Text('Workout')),
-            const NavigationDrawerDestination(
                 icon: Icon(Icons.account_circle), 
                 label: Text('User data')),
             const NavigationDrawerDestination(
                 icon: Icon(Icons.settings), label: Text('Settings')),
           ]),
       appBar: AppBar(
-        title: Text((index == 0) ? 'Cardio':
+        title: Text((index == 0)? 'Workouts':
         (index == 1) ? 'Sprint':
         (index == 2)? 'Cycling':
-        (index == 3)? 'Workouts':
+        (index == 3) ? 'Cardio':
         (index == 4)? '${user.get('name')}\'s profile':
         'Settings')
       ),

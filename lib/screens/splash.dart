@@ -29,9 +29,11 @@ class _SplashScreenState extends State<SplashScreen> {
           children: [
             const SizedBox(height: 48),
             const Text(
-              'Hey',
+              'Heyyyy',
               style: TextStyle(
-                  fontSize: 45, color: Colors.amber,),
+                fontSize: 45,
+                color: Colors.amber,
+              ),
             ),
             Image.asset('lib/assets/bear.gif', scale: 1),
             const BuildText(text: 'Tell us something about you', size: 1.8),
@@ -161,12 +163,14 @@ class _SplashScreenState extends State<SplashScreen> {
                       // }
                     },
                     visualDensity: VisualDensity.comfortable,
-                    padding: const EdgeInsets.all(8),
+                    padding: const EdgeInsets.all(21),
                     shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(16)),
+                      borderRadius: BorderRadius.circular(16),
+                    ),
+                    color: Colors.amber[700],
                     child: const BuildText(
-                      text: 'Create user',
-                      size: 1.5,
+                      text: 'Create User',
+                      size: 1.8,
                     )),
               ),
             ),
