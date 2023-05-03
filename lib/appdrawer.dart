@@ -39,13 +39,13 @@ class _AppDrawerState extends State<AppDrawer> {
         page = const WorkoutScaffold();
         break;
       case 1:
-        page = TimerScaffold(list: cardioList, boxName: 'Cardio');
+        page = TimerScaffold(list: cardioList, boxName: 'Cardio', mod: 60);
         break;
       case 2:
-        page = TimerScaffold(list: sprintList, boxName: 'Sprint');
+        page = TimerScaffold(list: sprintList, boxName: 'Sprint', mod: 60);
         break;
       case 3:
-        page = TimerScaffold(list: cyclingList, boxName: 'Cycling');
+        page = TimerScaffold(list: cyclingList, boxName: 'Cycling', mod: 30);
         break;
       case 4:
         page = const UserPage();
@@ -93,9 +93,9 @@ class _AppDrawerState extends State<AppDrawer> {
           ]),
       appBar: AppBar(
         title: Text((index == 0)? 'Workouts':
-        (index == 1) ? 'Sprint':
-        (index == 2)? 'Cycling':
-        (index == 3) ? 'Cardio':
+        (index == 1) ? 'Cardio':
+        (index == 2) ? 'Sprint':
+        (index == 3)? 'Cycling':
         (index == 4)? '${user.get('name')}\'s profile':
         'Settings')
       ),

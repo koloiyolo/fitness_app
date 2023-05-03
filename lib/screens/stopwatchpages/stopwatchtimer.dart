@@ -9,9 +9,14 @@ late Position currentPosition;
 bool positionGranted = false;
 
 class StopWatchTimerPage extends StatefulWidget {
+  final int mod;
   final String box;
   final List<StopWatch> list;
-  const StopWatchTimerPage({required this.box, required this.list, super.key});
+  const StopWatchTimerPage({
+    required this.box, 
+    required this.list, 
+    required this.mod,
+    super.key});
 
   @override
   State<StopWatchTimerPage> createState() => _StopWatchTimerPageState();
@@ -185,7 +190,7 @@ class _StopWatchTimerPageState extends State<StopWatchTimerPage> {
     if (!isStarted) {
       isStarted = true;
       stopwatch = Timer.periodic(const Duration(milliseconds: 100), (timer) {
-        if ((seconds % 60 == 0) && deciseconds == 0) {
+        if ((seconds % widget.mod == 0) && deciseconds == 0) {
           newCheckpoint();
         }
 

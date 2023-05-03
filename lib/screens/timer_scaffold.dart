@@ -4,10 +4,15 @@ import 'package:fitness_app/screens/stopwatchpages/stopwatchtimer.dart';
 import '../imports.dart';
 
 class TimerScaffold extends StatefulWidget {
+  final int mod;
   final String boxName;
   final List<StopWatch> list;
 
-  const TimerScaffold({required this.list, required this.boxName, super.key});
+  const TimerScaffold(
+      {required this.list,
+      required this.boxName,
+      required this.mod,
+      super.key});
 
   @override
   State<TimerScaffold> createState() => _TimerScaffoldState();
@@ -22,7 +27,8 @@ class _TimerScaffoldState extends State<TimerScaffold> {
   Widget build(BuildContext context) {
     switch (index) {
       case 0:
-        page = StopWatchTimerPage(list: widget.list, box: widget.boxName);
+        page = StopWatchTimerPage(
+            list: widget.list, box: widget.boxName, mod: widget.mod);
         break;
       case 1:
         page = StopWatchList(
